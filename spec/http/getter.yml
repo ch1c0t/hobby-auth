@@ -3,3 +3,20 @@
 
   response:
     status: 403
+
+- get:
+    path: /
+    headers:
+      Authorization: invalid token
+
+  response:
+    status: 403
+
+- get:
+    path: /
+    headers:
+      Authorization: first valid getter token
+
+  response:
+    status: 200
+    body: oh my get

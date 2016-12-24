@@ -1,13 +1,13 @@
 module Hobby
   module Auth
-    def self.[] *users
+    def self.[] *user_models
       Module.new do
         define_singleton_method :included do |app|
-          users.each do |user|
-            app.define_singleton_method user.name.downcase do |route|
+          user_models.each do |user_model|
+            app.define_singleton_method user_model.name.downcase do |route|
               action = route.action
               route.action = -> do
-                if user = (user.find_by_token request.get_header 'Authorization')
+                if user = (user_model.find_by_token env['HTTP_AUTHORIZATION'])
                   instance_exec &action
                 else
                   response.status = 403

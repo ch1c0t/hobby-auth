@@ -7,7 +7,7 @@ class User
   attr_reader :token
 
   def self.find_by_token token
-    @@all_users.find { |user| user.token == token && user.is_a?(self.class) }
+    @@all_users.find { |user| user.token == token && user.is_a?(self) }
   end
 end
 
