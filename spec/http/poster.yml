@@ -1,0 +1,16 @@
+- post:
+    path: /
+    headers:
+      Authorization: first valid getter token
+
+  response:
+    status: 403
+
+- post:
+    path: /
+    headers:
+      Authorization: first valid poster token
+
+  response:
+    status: 200
+    body: the user's token is first valid poster token

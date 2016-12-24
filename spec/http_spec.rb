@@ -9,7 +9,7 @@ Hobby::Devtools::RSpec.describe do
       include Hobby::Auth[Getter, Poster]
 
       getter get { 'oh my get' }
-      poster post { "the user is #{user}" }
+      poster post { "the user's token is #{user.token}" }
     end.new
   end
   path 'spec/http/**/*.yml'

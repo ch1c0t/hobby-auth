@@ -8,6 +8,7 @@ module Hobby
               action = route.action
               route.action = -> do
                 if user = (user_model.find_by_token env['HTTP_AUTHORIZATION'])
+                  @user = user
                   instance_exec &action
                 else
                   response.status = 403
@@ -17,6 +18,7 @@ module Hobby
             end
           end
         end
+        attr_reader :user
       end
     end
   end
