@@ -1,0 +1,5 @@
+- get:
+    path: /
+
+  response:
+    status: 403
