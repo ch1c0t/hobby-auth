@@ -12,5 +12,4 @@ Hobby::Devtools::RSpec.describe do
       poster post { "the user's token is #{user.token}" }
     end.new
   end
-  path 'spec/http/**/*.yml'
 end

@@ -1,3 +1,3 @@
 source 'https://rubygems.org'
 
-gem 'hobby-devtools'
+gem 'hobby-devtools', '>=0.0.5'
