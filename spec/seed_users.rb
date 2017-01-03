@@ -14,10 +14,12 @@ end
 class Getter < User
 end
 
-class Poster < User
+module Namespaced
+  class Poster < User
+  end
 end
 
 Getter.new 'first valid getter token'
 Getter.new 'second valid getter token'
-Poster.new 'first valid poster token'
-Poster.new 'second valid poster token'
+Namespaced::Poster.new 'first valid poster token'
+Namespaced::Poster.new 'second valid poster token'
