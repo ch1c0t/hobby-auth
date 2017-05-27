@@ -10,6 +10,15 @@ Hobby::Devtools::RSpec.describe do
 
       getter get { 'oh my get' }
       poster post { "the user's token is #{user.token}" }
+
+
+      def self.append_decorator route
+        action = route.action
+        route.action = -> { "#{instance_exec(&action)} append" }
+        route
+      end
+
+      append_decorator getter get('/decorator') { 'decorator' }
     end.new
   end
 end

@@ -1,0 +1,22 @@
+- get:
+    path: /decorator
+
+  response:
+    status: 403
+
+- get:
+    path: /decorator
+    headers:
+      Authorization: invalid token
+
+  response:
+    status: 403
+
+- get:
+    path: /decorator
+    headers:
+      Authorization: first valid getter token
+
+  response:
+    status: 200
+    body: decorator append
