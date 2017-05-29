@@ -1,0 +1,88 @@
+= Hobby-Auth
+
+This repository provides a https://github.com/ch1c0t/hobby[Hobby] extension
+to authorize routes.
+
+== Installation
+
+[source,bash]
+----
+gem install hobby-auth
+----
+
+== Introduction
+
+You are expected to pass your user models as arguments to `Hobby::Auth.[]`:
+
+[source,ruby]
+----
+require 'hobby'
+require 'hobby/auth'
+
+class YourApp
+  include Hobby
+  include Auth[*array_of_user_models]
+
+  # some route defining logic goes here, after 'includes'
+end
+----
+
+A user model is any object that responds to `.find_by_token` method
+which takes one argument(a token)
+and returns `nil`(if no user were found)
+or a user(which can be any object you would like to consider a user in your application).
+
+You can access that user via `user` method.
+
+Consider an example app where you need two user roles: managers and drivers.
+You can define `Manager` class as follows:
+
+[source,ruby]
+----
+class Manager
+  def self.find_by_token token
+    new if token == 'the only valid token at the moment'
+  end
+end
+----
+and `Driver` class similarly.
+
+Then, you can use them in your app:
+
+[source,ruby]
+----
+class App
+  include Hobby
+  include Auth[Manager, Driver]
+
+  manager post('/managers_route') {
+    # do something only managers can do
+    user # will return a `Manager` instance
+  }
+
+  driver get('/drivers_route') {
+    # do something only drivers can do
+    user # will return a `Driver` instance
+  }
+end
+----
+
+The token is expected to be passed via
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization[Authorization header].
+If no user were found, the response's status will be set to
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403[403].
+
+== Development
+
+To run the specs:
+
+[source,bash]
+----
+bundle exec rspec
+----
+
+To perform mutation analysis:
+[source,bash]
+----
+bundle exec mutant --use rspec 'Hobby::Auth*'
+----
