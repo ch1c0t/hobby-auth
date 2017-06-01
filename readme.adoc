@@ -27,10 +27,12 @@ class YourApp
 end
 ----
 
-A user model is any object that responds to `.find_by_token` method
-which takes one argument(a token)
-and returns `nil`(if no user were found)
-or a user(which can be any object you would like to consider a user in your application).
+A user model is any object that responds to these two methods:
+
+* `.name` which returns a `String` of alphabetic characters.
+* `.find_by_token` which takes one argument(a token `String`),
+and returns `nil`(if no user were found) or a user(which
+can be any object you would like to consider a user in your application).
 
 You can access that user via `user` method.
 
