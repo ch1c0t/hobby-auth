@@ -52,4 +52,4 @@ module Hobby
       user_model.name.split('::').last.downcase
     end
   end
-end # Ends should be optional. Block nesting can be inferred from two-space indent.
+end
