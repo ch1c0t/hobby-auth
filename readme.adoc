@@ -29,7 +29,8 @@ end
 
 A user model is any object that responds to these two methods:
 
-* `.name` which returns a `String` of alphabetic characters.
+* `.name` which returns a `String` which might be in
+https://ruby-doc.org/core/Module.html#method-i-name[Module#name].
 * `.find_by_token` which takes one argument(a token `String`),
 and returns `nil`(if no user were found) or a user(which
 can be any object you would like to consider a user in your application).
@@ -73,6 +74,10 @@ The token is expected to be passed via
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization[Authorization header].
 If no user were found, the response's status will be set to
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403[403].
+
+NOTE: If your user models have names leading to the same decorator name
+(for example, `Manager` and `SomeNamespace::Manager`),
+a `Hobby::Auth::SameNames` error will be raised.
 
 == Development
 
