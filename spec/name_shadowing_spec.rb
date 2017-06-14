@@ -21,6 +21,7 @@ describe Hobby::Auth do
         include Hobby
         include Hobby::Auth[Same, Namespaced::Same]
       end
-    }.to raise_error Hobby::Auth::SameNames
+    }.to raise_error Hobby::Auth::SameNames,
+    'The short names of Same and Namespaced::Same are the same: same.'
   end
 end

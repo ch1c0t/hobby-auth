@@ -26,17 +26,26 @@ module Hobby
     end
 
     class SameNames < StandardError
+      def initialize models, name
+        first, second = models
+        message = "The short names of #{first} and #{second} are the same: #{name}."
+        super message
+      end
     end
 
     def self.find_pairs user_models
-      array = user_models.map { |um| [(short_name_of um), um] }
+      pairs = user_models.map { |um| [(short_name_of um), um] }
 
-      names = array.map &:first
-      unless names.size == names.uniq.size
-        fail SameNames
+      names = {}
+      pairs.each do |name, model|
+        if first_model_with_that_name = names[name]
+          fail SameNames.new [first_model_with_that_name, model], name
+        else
+          names[name] = model
+        end
       end
 
-      array.to_h
+      pairs
     end
 
     def self.short_name_of user_model
