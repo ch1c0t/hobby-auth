@@ -8,8 +8,8 @@ Hobby::Devtools::RSpec.describe do
       include Hobby
       include Hobby::Auth[Getter, Namespaced::Poster]
 
-      getter get { 'oh my get' }
-      poster post { "the user's token is #{user.token}" }
+      Getter get { 'oh my get' }
+      Poster post { "the user's token is #{user.token}" }
 
 
       def self.append_decorator route
@@ -18,7 +18,7 @@ Hobby::Devtools::RSpec.describe do
         route
       end
 
-      append_decorator getter get('/decorator') { 'decorator' }
+      append_decorator Getter get('/decorator') { 'decorator' }
     end.new
   end
 end

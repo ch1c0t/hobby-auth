@@ -58,12 +58,12 @@ class App
   include Hobby
   include Auth[Manager, Driver]
 
-  manager post('/managers_route') {
+  Manager post('/managers_route') {
     # do something only managers can do
     user # will return a `Manager` instance
   }
 
-  driver get('/drivers_route') {
+  Driver get('/drivers_route') {
     # do something only drivers can do
     user # will return a `Driver` instance
   }

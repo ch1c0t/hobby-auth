@@ -49,7 +49,7 @@ module Hobby
     end
 
     def self.short_name_of user_model
-      user_model.name.split('::').last.downcase
+      user_model.name.split('::').last
     end
   end
 end

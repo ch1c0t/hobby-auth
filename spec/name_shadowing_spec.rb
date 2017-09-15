@@ -1,13 +1,13 @@
 require 'helper'
 
-class Same
+class SameName
   def self.find_by_token _token
     new
   end
 end
 
 module Namespaced
-  class Same
+  class SameName
     def self.find_by_token _token
       new
     end
@@ -19,9 +19,9 @@ describe Hobby::Auth do
     expect {
       Class.new do
         include Hobby
-        include Hobby::Auth[Same, Namespaced::Same]
+        include Hobby::Auth[SameName, Namespaced::SameName]
       end
     }.to raise_error Hobby::Auth::SameNames,
-    'The short names of Same and Namespaced::Same are the same: same.'
+    'The short names of SameName and Namespaced::SameName are the same: SameName.'
   end
 end
