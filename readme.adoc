@@ -75,7 +75,7 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization[Authoriz
 If no user were found, the response's status will be set to
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403[403].
 
-NOTE: If your user models have names leading to the same decorator name
+NOTE: If your user models have same short names
 (for example, `Manager` and `SomeNamespace::Manager`),
 a `Hobby::Auth::SameNames` error will be raised.
 
