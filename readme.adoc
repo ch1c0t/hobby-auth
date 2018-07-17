@@ -91,5 +91,5 @@ bundle exec rspec
 To perform mutation analysis:
 [source,bash]
 ----
-bundle exec mutant --use rspec 'Hobby::Auth*'
+bundle exec mutant --use rspec 'Hobby::Auth*' --include lib --require hobby/auth
 ----
